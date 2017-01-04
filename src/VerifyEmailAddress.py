@@ -1,5 +1,4 @@
 import re
-import socket
 import smtplib
 import dns.resolver
 
@@ -29,8 +28,6 @@ records = dns.resolver.query(domain, 'MX')
 mxRecord = records[0].exchange
 mxRecord = str(mxRecord)
 
-# Get local server hostname
-host = socket.gethostname()
 
 # SMTP lib setup (use debug level for full output)
 server = smtplib.SMTP()
@@ -38,7 +35,7 @@ server.set_debuglevel(0)
 
 # SMTP Conversation
 server.connect(mxRecord)
-server.helo(host)
+server.helo(server.local_hostname) ### server.local_hostname(Get local server hostname)
 server.mail(fromAddress)
 code, message = server.rcpt(str(addressToVerify))
 server.quit()
