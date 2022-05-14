@@ -24,7 +24,7 @@ domain = str(splitAddress[1])
 print('Domain:', domain)
 
 # MX record lookup
-records = dns.resolver.query(domain, 'MX')
+records = dns.resolver.resolve(domain, 'MX')
 mxRecord = records[0].exchange
 mxRecord = str(mxRecord)
 
