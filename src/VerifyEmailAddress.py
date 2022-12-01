@@ -40,11 +40,13 @@ server.mail(fromAddress)
 code, message = server.rcpt(str(addressToVerify))
 server.quit()
 
-#print(code)
-#print(message)
 
 # Assume SMTP response 250 is success
-if code == 250:
-	print('Success')
-else:
-	print('Bad')
+# if code == 250:
+# 	print('Success')
+# else:
+# 	print('Bad')
+
+	
+status = "Success" if code == 250 else "Bad"
+print(status)
